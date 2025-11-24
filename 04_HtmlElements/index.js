@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let txt1, txt2, btn, lblRes;
+let op;
 
 function pageLoaded() {
     txt1 = document.getElementById("txt1");
@@ -15,19 +16,59 @@ function pageLoaded() {
     });
     lblRes = document.getElementById("lblRes");
 
+    op = document.getElementById("op");
+    txt1.addEventListener("input", () => validateInput(txt1));
+    txt2.addEventListener("input", () => validateInput(txt2));
+
+
 
 }
 
 function calculate() {
-    let txt1Text = txt1.value;
-    let num1 = parseInt(txt1Text);
+    let num1 = Number(txt1.value);
+    let num2 = Number(txt2.value);
 
-    let txt2Text = txt2.value;
-    let num2 = parseInt(txt2Text);
+    if (isNaN(num1) || isNaN(num2)) {
+        lblRes.innerText = "Error";
+        print(`❗ Error: one or more values are not numeric`, true);
+        return;
+    }
 
-    let res = num1 + num2;
-    lblRes.innerText =  res;
+    let res = 0;
+    let opSymbol = "";
+
+    switch (op.value) {
+        case "plus":
+            res = num1 + num2;
+            opSymbol = "+";
+            break;
+
+        case "minus":
+            res = num1 - num2;
+            opSymbol = "-";
+            break;
+
+        case "mul":
+            res = num1 * num2;
+            opSymbol = "*";
+            break;
+
+        case "div":
+            if (num2 === 0) {
+                lblRes.innerText = "Error";
+                print(`❗ Error: division by zero — operation: ${num1} / ${num2}`, true);
+                return;
+            }
+            res = num1 / num2;
+            opSymbol = "/";
+            break;
+    }
+
+    lblRes.innerText = res;
+
+    print(`Operation: ${num1} ${opSymbol} ${num2} = ${res}`, true);
 }
+
 
 const btn2 = document.getElementById("btn2");
 btn2.addEventListener("click", () => {
@@ -41,14 +82,16 @@ btn2.addEventListener("click", () => {
 //    alert("Button 2 clicked - func1");
 //}
 
-function print(msg) {
-
-    //--Get the TEXT AREA ELEMENT Reference
+function print(msg, append) {
     const ta = document.getElementById("output");
-    //--Write the MESSAGE to the TEXT AREA or to CONSOLE
-    if (ta) ta.value = msg;
-    else console.log(msg);
+    if (!ta) return;
+
+    if (append)
+        ta.value += msg + "\n";
+    else
+        ta.value = msg + "\n";
 }
+
 
 
 function demoNative() {
@@ -90,4 +133,14 @@ function demoNative() {
     out += "\n[Callback] calc(10,20, x+y ) = " + result;
 
     print(out);
+}
+
+function validateInput(inputElement) {
+    if (!inputElement.value || isNaN(inputElement.value)) {
+        inputElement.classList.remove("is-valid");
+        inputElement.classList.add("is-invalid");
+    } else {
+        inputElement.classList.remove("is-invalid");
+        inputElement.classList.add("is-valid");
+    }
 }

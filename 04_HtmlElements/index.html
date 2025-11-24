@@ -5,35 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <button onclick="demoNative()">Native Types</button>
     <button id="btn2">Register Click From Code</button>
     <br><br>
-    <table>
-        <tr>
-            <td style="padding: 5px;">
-                <input id="txt1" type="text" style="width: 200px;">
-            </td>
-            <td style="padding: 5px;">
-                <label>+</label>
-            </td>
-            <td style="padding: 5px;">
-                <input id="txt2" type="text" style="width: 200px;">
-            </td>
-            <td style="padding: 5px;">
-                <button id="btnCalc"> = </button>
-            </td>
-            <td style="padding: 5px;">
-                <h3 id="lblRes"> </h3>
-            </td>
 
-        </tr>
-    </table>
-    <br>
-    <textarea id="output" style="width: 100%; height: 400px;"></textarea>
+    <div class="container mt-4">
+
+        <div class="row g-3">
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <input id="txt1" type="text" class="form-control" placeholder="Number 1">
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <input id="txt2" type="text" class="form-control" placeholder="Number 2">
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <select id="op" class="form-select">
+                    <option value="plus">+</option>
+                    <option value="minus">-</option>
+                    <option value="mul">*</option>
+                    <option value="div">/</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3 d-grid">
+                <button id="btnCalc" class="btn btn-primary">=</button>
+            </div>
+
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 col-md-6">
+                <h3 id="lblRes"></h3>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <textarea id="output" class="form-control" style="height: 250px;"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your JS -->
+    <script src="index.js"></script>
 </body>
-<script src="index.js"></script>
 
 </html>
