@@ -169,9 +169,9 @@ function renderSongs() {
                 <span>${song.title}</span>
             </td>
             <td class="align-middle">
-                <button class="btn btn-link text-info p-0" onclick="playSong(${song.id})">
+                <a href="https://www.youtube.com/watch?v=${song.id}" target="_blank" class="btn btn-link text-info p-0">
                     Watch
-                </button>
+                </a>
             </td>
             <td class="align-middle">${song.rating}/10 ⭐</td>
             <td class="text-end align-middle">
