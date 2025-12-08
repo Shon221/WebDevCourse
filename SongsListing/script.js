@@ -152,6 +152,9 @@ function renderSongs() {
 
     filtered.forEach(song => {
         const videoId = song.videoId || getYouTubeId(song.url);
+        const youtubeUrl = videoId
+            ? `https://www.youtube.com/watch?v=${videoId}`
+            : song.url;
         const thumbnailUrl = videoId
             ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
             : '';
@@ -169,7 +172,7 @@ function renderSongs() {
                 <span>${song.title}</span>
             </td>
             <td class="align-middle">
-                <a href="https://www.youtube.com/watch?v=${song.id}" target="_blank" class="btn btn-link text-info p-0">
+                <a href="${youtubeUrl}" target="_blank" class="btn btn-link text-info p-0">
                     Watch
                 </a>
             </td>
